@@ -9,6 +9,31 @@ void printID(char id[]){
 
 	printf("\n");
 }
+
+//function definition of dispWAVData()
+void dispWAVData(char filename[]){
+	int i,j;	//loop counters
+	FILE *fp;	//file handler to open the file "test.wav"
+	double rms[80], sum; //80 pieces of rms value
+	short samples[SAMPLERATE];	//totally 16000 samples in 1 sec
+	WAVHeader mh;	// just used to skip over the header of wav file
+	fp = fopen(filename, "r");
+	if(fp == NULL){
+		printf("Error when opening the file");
+		return 0;
+	}
+	fread(&mh, sizeof(mh), 1, fp); // skip over the header of wave file
+	fread(samples, sizeof(short), SAMPLERATE, fp);
+	fclose(fp);
+	for(i=0; i<80; i++){
+		for(j=0, sum=0.0; j<SAMPLERATE/80; j++){
+			sum += samples[j+i*200] * samples[j+i*200];	//understanding
+		}
+		rms[i]=sqrt(sum/200);
+		printf("rms[%d]: %10.4f\n", i, rms[i]);
+	}
+}
+
 //function definition of dispWAVHeader()
 void dispWAVHeader(char filename[]){
 	FILE *fp;
@@ -30,6 +55,13 @@ void dispWAVHeader(char filename[]){
 	printf("  subchunk 1 ID: ");
 	printID(mh.subchunk1ID);
 	printf("  subchunk 1 size: %d\n", mh.subchunk1Size);
-
-	// to be continue...
+	printf("Audio format: %d\n", mh.audioFormat);
+	printf("Numchannels: %d\n", mh.numchannels);
+	printf("Sample rate: %d\n", mh.sampleRate);
+	printf("Byte rate: %d\n", mh.byteRate);
+	printf("Block align: %d\n", mh.blockAlign);
+	printf("bits per sample: %d\n", mh.bitsPerSample);
+	printf("  subchunk 2 ID: ");
+	printID(mh.subchunk2ID);
+	printf("  Subchunk 2 size: %d\n", mh.subchunk2Size);
 }
