@@ -1,3 +1,5 @@
+#define UNICODE
+#define BAR "\u2590"
 // constant definitions
 #define ESC 0x1B
 enum COLORS {BLACK=30, RED, GREEN, BLUE, MAGENTA, CYAN, WHITE};
@@ -8,3 +10,4 @@ void gotoxy(int row, int col);
 void setColor(int color);
 void dispBar(int col, double dB);
 
+# test
