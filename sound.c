@@ -1,3 +1,4 @@
+#include "comm.h"
 #include "sound.h"
 #include "screen.h"
 #include <stdio.h>
@@ -36,7 +37,10 @@ void dispWAVData(char filename[]){
 #else
 		dispBar(i, 20*log10(rms[i]));	//display dB value a bar
 #endif
-	}
+	}	// end of for(i)
+#ifdef COMM //if COMM is defined, we do this.
+	sendToServer(rms);
+#endif
 }
 
 //function definition of dispWAVHeader()
