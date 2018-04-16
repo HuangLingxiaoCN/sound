@@ -6,7 +6,7 @@ with microphone and a RJ45 cable are needed as peripheral. The application runs
 periodically every second and take record from microphone at a sample rate of
 16000 Hz. The sound is then calculated into 80 pieces of RMS value and displayed
 as a bar chart on terminal screen. If communication is enabled (conditional
-compilation), the sound will be re-calculated int o 8 pieces of Fast Level data
+compilation), the sound will be re-calculated in to 8 pieces of Fast Level data
 and sent out to a PHP server program.
 
 List of Contents
@@ -24,9 +24,12 @@ List of Contents
 	The installation of the program requires a screen and a HDMI cable connected to the screen. 
 	First we need to run Linux system and then change the default configuration by entering some codes.
 	Afterwards, only raspberry Pi and Ethernet cable should be connected to computer. Then the 
-	installation is completed	
+	installation is completed.
 3. Operation instructions
-	The user simply runs putty and enter IP address that is sent to user's computer.
+	The user simply runs putty and enter IP address that is sent to user's computer(If the email is not sent,
+	the user may check the information on the website www.cc.puv.fi/~gc/php/rasp.php). Then open appdev file
+	which contains the source code. After that, operate application by typing "./sound.a"(remember to change 
+	the Remote Character Set as UTF-8). It should shows many vertical bars on the screen. 
 4. File manifest
 	comm.c comm.h main.c makefile README.md README.txt screen.c screen.h sound.c sound.h test.wav
 5. Copyright and license
